@@ -9,13 +9,6 @@
 " properly set to work with the Vim-related packages available in Debian.
 runtime! debian.vim
 
-" Vim will load $VIMRUNTIME/defaults.vim if the user does not have a vimrc.
-" This happens after /etc/vim/vimrc(.local) are loaded, so it will override
-" any settings in these files.
-" If you don't want that to happen, uncomment the below line to prevent
-" defaults.vim from being loaded.
-" let g:skip_defaults_vim = 1
-
 " Uncomment the next line to make Vim more Vi-compatible
 " NOTE: debian.vim sets 'nocompatible'.  Setting 'compatible' changes numerous
 " options, so any other options should be set AFTER setting 'compatible'.
@@ -23,7 +16,9 @@ runtime! debian.vim
 
 " Vim5 and later versions support syntax highlighting. Uncommenting the next
 " line enables syntax highlighting by default.
-"syntax on
+if has("syntax")
+  syntax on
+endif
 
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
@@ -57,3 +52,19 @@ if filereadable("/etc/vim/vimrc.local")
   source /etc/vim/vimrc.local
 endif
 
+" set number
+set nu
+" set c-style indent
+set cindent
+" insert map include with #i" and #i<
+inoremap #i" #include ""<ESC>i
+inoremap #i< #include <><ESC>i
+" insert map main function
+inoremap main<CR> int main(int argc, char *argv[]){<CR>}<ESC>Oreturn 0;<ESC>O
+" insert map double curlybrace
+inoremap { {}<ESC>i
+inoremap {<CR> {<CR>}<ESC>O
+" insert map semicolon
+inoremap <A-;> <End>;<CR>
+" insert map arrow operator ->
+inoremap <A-.> ->
