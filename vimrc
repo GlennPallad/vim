@@ -65,6 +65,6 @@ inoremap main<CR> int main(int argc, char *argv[]){<CR>}<ESC>Oreturn 0;<ESC>O
 inoremap { {}<ESC>i
 inoremap {<CR> {<CR>}<ESC>O
 " insert map semicolon
-inoremap <A-;> <End>;<CR>
+inoremap ;;; <End>;<CR>
 " insert map arrow operator ->
-inoremap <A-.> ->
+inoremap >>> ->
